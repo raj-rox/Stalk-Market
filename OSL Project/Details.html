@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+    .navbar{
+        font-weight: lighter;
+    }
+    .container-fluid{
+        background-color: #f8f9fa !important;
+        height: 91vh;
+    }
+    .postImage{
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+        vertical-align: middle;
+        margin: 0 auto;
+    }
+    .details{
+        margin: 0 10px;
+    }
+    .details .detailsImage{
+        margin: -10px;
+    }
+    .details img.like{
+        float: right;
+    }
+    .comment{
+        font-size: 0.85rem;
+    }
+    .author{
+        font-size: 0.85rem;
+        font-weight: bold;
+        margin-right: 3px;
+    }
+    .details a{
+        text-decoration: none;
+        color: #212529;
+    }
+    </style>
+    <title>Instagram Lookalike</title>
+    <link rel="shortcut icon" href="./InstagramLogo.png" type="image/png">
+</head>
+<body>
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="./Home.html">
+            <img src="InstagramLogo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            &nbsp;Instagram
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="./Home.html">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./Upload.html">Upload</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="./Login.html">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="width: 100%">Login</button>
+            </form>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class = "row">
+            <div class = "offset-xs-2 col-xs-8 offset-md-4 col-md-4" style="padding: 0">
+                <br/>
+                <div class="details">
+                    <div class="detailsImage" style="text-align: center;">
+                        <img class="postImage" src="Large.png" alt="Card image cap">
+                    </div>
+                    <br>
+                    <img class="like" id="12345" src="InstagramLike.png" height="30px" width="30px">
+                    <p class="text-muted likecount" style="float: right; margin-top: 2px;">191</p>
+                    <a href=""><span class="card-text" style="font-weight: bold">Maulik Shah</span></a><br>
+                    <small class="text-muted">12:38 p.m.</small>
+                    <br><br>
+                    <span class="card-text text-muted">Comments:</span><br><br>
+                    <a href=""><span class="card-text text-muted author">Author:</span></a><span class="card-text text-muted comment">Comment Content</span><br>
+                    <hr/>
+                    <a href=""><span class="card-text text-muted author">Author:</span></a><span class="card-text text-muted comment">Comment Content</span><br>
+                    <hr/>
+                    <a href=""><span class="card-text text-muted author">Author:</span></a><span class="card-text text-muted comment">Comment Content</span><br>
+                    <hr/>
+                    <div class="addComment" style="">
+                        <form class="row" id="postComment" style="margin: 0">
+                            <div class="form-group" style="float: left; width: 80%; margin-bottom: 0;">
+                                <input type="text" class="form-control" id="id_comment" name="comment" placeholder="Add comment">
+                            </div>
+                            <button type="submit" class="btn btn-outline-success loginButton col-xs-2" style="float: right; width: 20%;">Post</button>
+                        </form>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    $(document).ready(function(){
+        $('.like').click(function(e){
+            var id = $(this).attr('id');
+            var url = "../post/"+id+"/like/";
+            //$.getJSON(url, function(result) {
+                if($(this).hasClass('liked')){
+                    $(this).attr('src', 'InstagramLike.png').removeClass('liked');
+                    $(this).siblings('.likecount').text((parseInt($(this).siblings('.likecount').text())-1));
+                }
+                else {
+                    $(this).attr('src', 'Liked.png').addClass('liked');
+                    $(this).siblings('.likecount').text((parseInt($(this).siblings('.likecount').text())+1));
+                }
+            //});
+        });
+    });
+    </script>
+</body>
+</html>
